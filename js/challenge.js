@@ -3,6 +3,8 @@ const addition = document.querySelector('#plus')
 const subtract = document.querySelector('#minus')
 const like = document.querySelector('#heart')
 let likeClicks = 0
+const commentForm = document.querySelector('#comment-form')
+
 addition.addEventListener('click', () => { 
     timer.textContent = parseInt(timer.textContent)+1
 })
@@ -20,6 +22,16 @@ like.addEventListener('click', () => {
     likesList.append(li)
     li.textContent = `${timer.textContent} has been liked ${likeClicks+=1} times`
 })
+
+commentForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const comments = document.createElement('p')
+    const commentList = document.querySelector('#list')
+    commentList.append(comments)
+    comments.textContent = e.target.comment.value
+})
+
+
 
 
 
