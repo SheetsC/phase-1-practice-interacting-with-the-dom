@@ -4,6 +4,7 @@ const subtract = document.querySelector('#minus')
 const like = document.querySelector('#heart')
 let likeClicks = 0
 const commentForm = document.querySelector('#comment-form')
+const pauseBtn = document.querySelector('#pause')
 
 addition.addEventListener('click', () => { 
     timer.textContent = parseInt(timer.textContent)+1
@@ -31,13 +32,30 @@ commentForm.addEventListener('submit', (e) => {
     comments.textContent = e.target.comment.value
 })
 
+pauseBtn.addEventListener('click', () => {
+    if(pauseBtn.textContent == "pause") {
+        pauseBtn.textContent = "resume"
+        addition.disabled = true;
+        subtract.disabled = true;
+        like.disabled = true;
+        document.querySelector('#submit').disabled = true;
+    }
+    else {
+        pauseBtn.textContent = "pause"
+        addition.disabled = false;
+        subtract.disabled = false;
+        like.disabled = false;
+        document.querySelector('#submit').disabled = false;
+    }
+})
 
+setInterval(timerUp, 1000)
 
-
-
-
-
-
-
-
-
+function timerUp() {
+    if(pauseBtn.textContent == "resume") {
+        timer.textContent = timer.textContent
+    }
+    else {
+        timer.textContent = parseInt(timer.textContent)+1
+    } 
+}
